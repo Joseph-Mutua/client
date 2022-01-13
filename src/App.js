@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "./core/Layout";
 
-const App = () => {
-
+const Home = () => {
   return (
     <div>
       <Layout>
@@ -12,4 +11,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

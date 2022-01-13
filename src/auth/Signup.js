@@ -34,6 +34,8 @@ const Signup = () => {
     })
       .then((res) => {
         console.log("SIGNUP SUCCESS", res);
+
+        //Save the response (user, token) to localstorage/cookie
         setValues({
           ...values,
           name: "",
@@ -41,7 +43,7 @@ const Signup = () => {
           password: "",
           buttonText: "Submitted",
         });
-        toast.success(res.data.message);
+        toast.success(`Hey ${res.data.user.name}, Welcome Back!`);
       })
       .catch((err) => {
         console.log("SIGNUP ERROR", err.response.data);
