@@ -46,9 +46,9 @@ const Signup = () => {
         toast.success(`Hey ${res.data.user.name}, Welcome Back!`);
       })
       .catch((err) => {
-        console.log("SIGNUP ERROR", err.response.data);
+        console.log("SIGNUP ERROR", err.response);
         setValues({ ...values, buttonText: "Submit" });
-        toast.error(err.response.data.error);
+        toast.error(err.response);
       });
   };
 

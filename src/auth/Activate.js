@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import Layout from "../core/Layout";
 import axios from "axios";
 import jwt from "jsonwebtoken";
@@ -13,17 +13,18 @@ const Activate = ({ match }) => {
     show: true,
   });
 
+  const { name, show } = values;
+
+  const { token } = useParams();
+
   useEffect(() => {
-    console.log("STATE CHANGED!");
-    let token = match.params.token;
+    console.log("STATE CHANGED!", token);
     let { name } = jwt.decode(token);
-    // console.log(token);
     if (token) {
       setValues({ ...values, name, token });
     }
-  }, []);
 
-  const { name, token, show } = values;
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const Activate = ({ match }) => {
       },
     })
       .then((res) => {
-        console.log("ACCOUNT ACTIVATION SUCCESS", res);
+        console.log("ACCOUNT ACTIVATION SUCCESS", res.data.message);
 
         //Save the response (user, token) to localstorage/cookie
         setValues({
@@ -43,6 +44,7 @@ const Activate = ({ match }) => {
           name: "",
           show: false,
         });
+
         toast.success(res.data.message);
       })
       .catch((err) => {
