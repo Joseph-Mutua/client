@@ -54,10 +54,16 @@ export const isAuth = () => {
     const cookieChecked = getCookie("token");
     if (cookieChecked) {
       if (localStorage.getItem("user")) {
-        return JSON.parse(localstorage.getItem);
+        return JSON.parse(localStorage.getItem("user"));
       } else {
         return false;
       }
     }
   }
+};
+
+export const signout = (next) => {
+  removeCookie("token");
+  removeLocalStorage("user");
+  next();
 };

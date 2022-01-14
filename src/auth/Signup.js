@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, Navigate, useNavigate } from "react-router-dom";
 import Layout from "../core/Layout";
 import axios from "axios";
+import { isAuth } from "./helpers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify//dist/ReactToastify.min.css";
 
@@ -12,6 +13,8 @@ const Signup = () => {
     password: "123456",
     buttonText: "Submit",
   });
+
+  const { navigate } = useNavigate();
 
   const { name, email, password, buttonText } = values;
 
@@ -94,7 +97,7 @@ const Signup = () => {
     <Layout>
       <div className="col-d-6 offset-md-3">
         <ToastContainer />
-
+        {isAuth() ? <Navigate replace to="/" /> : null}
         <h1 className="text-center p-5">Signup</h1>
         {signupForm()}
       </div>
