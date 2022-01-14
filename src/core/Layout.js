@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     if (pathname === clickedPath) {
       return { color: "#000" };
     } else {
-      return { color: "#fff" };
+      return { color: "#ff0000" };
     }
   };
 
